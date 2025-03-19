@@ -1,4 +1,4 @@
-# ClassLink OAuth2 Application
+# ClassLink OAuth2 SSO Demo
 
 This application demonstrates a simple OAuth2 flow using ClassLink to authenticate staff and students.  Once authentication is complete an access token is obtained which can be used to access user data from the [ClassLink API](https://help.classlink.com/s/article/pp-access-user-data#oauth2).
 
@@ -16,7 +16,7 @@ Below is a step-by-step guide on how to install and use this application.
     Clone this repository to your local machine using Git:
 
 ``` bash
-git clone https://github.com/your-repo-url/classlink-oauth2-app.git
+git clone https://github.com/LibertySource/classlink-oauth2-sso-demo.git 
 ```
 
 2) **Install Dependencies**: \
@@ -31,17 +31,17 @@ yarn install
 
 ## Configuration
 
-1) Create a .env File:
-Create a .env file in the root of your project to store sensitive credentials. Add the following variables:
+1) **Create a .env File**: \
+    Create a .env file in the root of your project to store sensitive credentials. Add the following variables:
 
 ``` text
 CLIENT_ID=your_client_id_here
 CLIENT_SECRET=your_client_secret_here
-REDIRECT_URI=http://localhost:8080/
+REDIRECT_URI=http://localhost:8080/classlink_callback
 ```
 
-2) **Update** .env **Values**:
-Replace your_client_id_here, your_client_secret_here, and http://localhost:8080/ with your actual ClassLink OAuth2 credentials and redirect URI.
+2) **Update** .env **Values**: \
+    Replace your_client_id_here, your_client_secret_here, and http://localhost:8080/classlink_callback with your actual ClassLink OAuth2 credentials and redirect URI.
 
 ## Usage
 
@@ -53,7 +53,7 @@ npm run dev
 ```
 
 2) **Access the Login Page**: \
-    Open a web browser and navigate to http://localhost:8080/login. You will be redirected to the ClassLink OAuth2 authorization page.
+    Open a web browser and navigate to http://localhost:8080. You will be redirected to the ClassLink OAuth2 authorization page.
 
 3) **Authorize the Application**: \
     Follow the prompts to authorize the application. After authorization, you will be redirected back to your server.
