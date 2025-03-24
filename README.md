@@ -1,6 +1,6 @@
 # ClassLink OAuth2 SSO Demo
 
-This application demonstrates a simple OAuth2 flow using ClassLink to authenticate staff and students.  Once authentication is complete an access token is obtained which can be used to access user data from the [ClassLink API](https://help.classlink.com/s/article/pp-access-user-data#oauth2).
+This application demonstrates the ClassLink SSO process flow.  
 
 Below is a step-by-step guide on how to install and use this application.
 
@@ -42,11 +42,4 @@ Copy .env-sample to .env and obtain all necessary values.
 npm run dev
 ```
 
-2) **Access the Login Page**: \
-    Open a web browser and navigate to http://localhost:8080. You will be redirected to the ClassLink OAuth2 authorization page.
-
-3) **Authorize the Application**: \
-    Follow the prompts to authorize the application. After authorization, you will be redirected back to your server.
-
-4) **Obtain Access Token**: \
-    The access token will be displayed in JSON format on the page. You can use this token to make API requests to ClassLink services.
+Open a web browser and navigate to http://localhost:8080.  Then follow instruction on the page.
