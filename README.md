@@ -31,17 +31,7 @@ yarn install
 
 ## Configuration
 
-1) **Create a .env File**: \
-    Create a .env file in the root of your project to store sensitive credentials. Add the following variables:
-
-``` text
-CLIENT_ID=your_client_id_here
-CLIENT_SECRET=your_client_secret_here
-REDIRECT_URI=http://localhost:8080/classlink_callback
-```
-
-2) **Update** .env **Values**: \
-    Replace your_client_id_here, your_client_secret_here, and http://localhost:8080/classlink_callback with your actual ClassLink OAuth2 credentials and redirect URI.
+Copy .env-sample to .env and obtain all necessary values.
 
 ## Usage
 
