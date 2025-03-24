@@ -41,104 +41,128 @@
         align-items: center;
         font-family: Arial, sans-serif;
       }
+
       .copy-icon {
         cursor: pointer;
         margin-left: 8px;
         font-size: 16px;
         color: #007bff;
       }
+
       .copy-icon:hover {
         color: #0056b3;
       }
     </style>
   </head>
+
   <body>
-    <h1>ClassLink Oauth2 SSO Demo</h1>
+    <h1>ClassLink Oauth2 SSO Documentation</h1>
 
-    <p>This application demonstrates the ClassLink Oauth2 SSO flow.</p>
+    <h2>Overview</h2>
 
-    <h2>Directions</h2>
+    <p>ClassLink users begin their SSO at a ClassLink specific URL.</p>
 
-    <p style="color: red;">Before continuing, make note of the following items:</p>
+    <p><strong>Example</strong>:</p>
 
-    <p class="copy-container"></p>
     <p>
-      Copy the following URL into your clipboard.  This is the URL for the test login page: 
-      <br/>
-      <br/>
-      <code>https://launchpad.classlink.com/cltest</code>
-      <span class="copy-icon" onclick="copyToClipboard()">📋</span>
+      <a href="https://launchpad.classlink.com/cltest" target="_blank"
+        >https://launchpad.classlink.com/cltest</a
+      >
     </p>
 
-    <table border="1" style="border-collapse: collapse; width: 100%;">
-        <thead>
-            <tr>
-                <th style="padding: 10px; background-color: #f0f0f0;">Role</th>
-                <th style="padding: 10px; background-color: #f0f0f0;">Username</th>
-                <th style="padding: 10px; background-color: #f0f0f0;">Password</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td style="padding: 10px;">Student</td>
-                <td style="padding: 10px;">{{StudentName}}</td>
-                <td style="padding: 10px;">{{StudentPassword}}</td>
-            </tr>
-            <tr>
-                <td style="padding: 10px;">Teacher</td>
-                <td style="padding: 10px;">{{TeacherName}}</td>
-                <td style="padding: 10px;">{{TeacherPassword}}</td>
-            </tr>
-            <tr>
-                <td style="padding: 10px;">Parent</td>
-                <td style="padding: 10px;">{{ParentName}}</td>
-                <td style="padding: 10px;">{{ParentPassword}}</td>
-            </tr>
-            <tr>
-                <td style="padding: 10px;">Administrator</td>
-                <td style="padding: 10px;">{{AdminName}}</td>
-                <td style="padding: 10px;">{{AdminPassword}}</td>
-            </tr>
-        </tbody>
+    <p>
+      Once the user is logged in to ClassLink they are shown the ClassLink
+      Launchpad.
+    </p>
+
+    <p>Insert Picture</p>
+
+    <p>
+      On the ClassLink Launchpad users will see the Liberty application icons
+      they have access to. For instance a student will see a Student Explorer
+      application icon. Teachers will see a Trends application icon.
+    </p>
+
+    <p>
+      When the user clicks an application icon they will be directed to a Liberty owned <strong>callback</strong> URL:
+    </p>
+
+    <p><strong>Examples</strong>:</p>
+
+    <ol>
+      <li>
+        https://explorer.tangosoftware.com/<strong>classlink_callback</strong>
+      </li>
+      <li>
+        https://trends.tangosoftware.com/<strong>classlink_callback</strong>
+      </li>
+    </ol>
+
+    <h2>classlink_callback</h2>
+
+    <p>
+      That <strong>new</strong> classlink_callback endpoints will receive a
+      <strong>code</strong> and proceed as follows:
+    </p>
+
+    <ol>
+      <li>
+        Verify the <strong>code</strong> with ClassClink and exchange it for a
+        token. ([CLASSLINK_TOKEN_URL])
+      </li>
+      <li>
+        Lookup the following from ClassLink Info API ([CLASSLINK_INFO_URL])
+      </li>
+      <ol>
+        <li>LoginId</li>
+        <li>Role</li>
+        <li>OrgId</li>
+      </ol>
+      <li>Lookup the <strong>OrgId</strong> in the [Tango].[Control] table.</li>
+      <li>
+        Connect to the appropriate database and verify the user by
+        <strong>Role</strong> and <strong>LoginId</strong>.
+      </li>
+    </ol>
+
+    <p>
+      If all conditions are met then the user should be considered
+      authenticated. No additional password verification, refresh, or timeout is
+      needed.
+    </p>
+
+    <h2>Test Logins</h2>
+
+    <table border="1" style="border-collapse: collapse; width: 100%">
+      <thead>
+        <tr>
+          <th style="padding: 10px; background-color: #f0f0f0">Role</th>
+          <th style="padding: 10px; background-color: #f0f0f0">Username</th>
+          <th style="padding: 10px; background-color: #f0f0f0">Password</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding: 10px">Student</td>
+          <td style="padding: 10px">{{StudentName}}</td>
+          <td style="padding: 10px">{{StudentPassword}}</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px">Teacher</td>
+          <td style="padding: 10px">{{TeacherName}}</td>
+          <td style="padding: 10px">{{TeacherPassword}}</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px">Parent</td>
+          <td style="padding: 10px">{{ParentName}}</td>
+          <td style="padding: 10px">{{ParentPassword}}</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px">Administrator</td>
+          <td style="padding: 10px">{{AdminName}}</td>
+          <td style="padding: 10px">{{AdminPassword}}</td>
+        </tr>
+      </tbody>
     </table>
-    
-    <p>
-      After clicking the button below, you will need to paste the copied URL
-      into the browser window. You will then be directed to a login page where
-      one of the credentials above should be entered.
-    </p>
-
-    <p>
-      After logging in, you will be redirected back to the
-      <code>/classlink_callback</code> endpoint of this application. That
-      endpoint receives a code that is then exchanged for a token that can be
-      used to look up user data.
-    </p>
-
-    <button onclick="redirectToNewPage()">
-      Begin ClassLink Authentication
-    </button>
-
-    <p>
-      Clicking the button above will redirect to the following URL:
-      <br />
-      <code>{{authUrl}}</code>
-    </p>
-
-    <script>
-      function redirectToNewPage() {
-        window.location.href = "{{authUrl}}"
-      }
-
-      function copyToClipboard() {
-        const url = "https://launchpad.classlink.com/cltest"
-        navigator.clipboard
-          .writeText(url)
-          .then(() => {})
-          .catch((err) => {
-            console.error("Failed to copy: ", err)
-          })
-      }
-    </script>
   </body>
 </html>
