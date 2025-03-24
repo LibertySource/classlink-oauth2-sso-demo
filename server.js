@@ -14,6 +14,9 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 
+// Serve images from the 'images' directory with a virtual path prefix
+app.use('/images', express.static(path.join(__dirname, 'images')));
+
 app.get('/', (req, res) => {
     //const authUrl = `${CLASSLINK_AUTH_URL}?scope=profile&response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`;
 
