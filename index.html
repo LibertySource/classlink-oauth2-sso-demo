@@ -91,18 +91,20 @@
 
     <ol>
       <li>
-        https://explorer.tangosoftware.com/<strong>classlink_callback</strong>
+        https://explorer.tangosoftware.com/<strong>classlink</strong>
       </li>
       <li>
-        https://trends.tangosoftware.com/<strong>classlink_callback</strong>
+        https://trends.tangosoftware.com/<strong>classlink</strong>
       </li>
     </ol>
 
-    <h2>classlink_callback</h2>
+    <p><strong>Note</strong>: the above URLs can also be where ClassLink SSO users are directed after they logout.  When no <strong>code</strong> is received then display message that user should login at their District ClassLink URL.</p>
+
+    <h2>/classlink URL</h2>
 
     <p>
-      That <strong>new</strong> classlink_callback endpoints will receive a
-      <strong>code</strong> and proceed as follows:
+      This <i>new</i> <strong>classlink</strong> endpoints will receive a
+      <strong>code</strong> and proceeds as follows:
     </p>
 
     <ol>
@@ -116,9 +118,9 @@
       <ol>
         <li>LoginId</li>
         <li>Role</li>
-        <li>OrgId</li>
+        <li>TenantId</li>
       </ol>
-      <li>Lookup the <strong>OrgId</strong> in the [Tango].[Control] table.</li>
+      <li>Lookup the <strong>TenantId</strong> in the [Tango].[Control] table.</li>
       <li>
         Connect to the appropriate database and verify the user by
         <strong>Role</strong> and <strong>LoginId</strong>.
